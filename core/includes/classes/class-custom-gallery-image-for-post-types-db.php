@@ -27,8 +27,8 @@ if ( !class_exists( 'ProjectileCRM_Plugin' ) ) {
         
         public function getThePostTypeSeleted() {
             global $wpdb;
-            $sql_query = 'SELECT * FROM `'.$this->table_settings;
-            return $wpdb->get_row( $sql_query , ARRAY_A );
+            $sql_query = 'SELECT * FROM `'.$this->table_settings.'`';
+            return $wpdb->get_results( $sql_query , OBJECT );
         }
         
         public function saveThePostTypeSeleted( $postTypeValue ) {

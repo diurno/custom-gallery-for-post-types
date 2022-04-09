@@ -23,6 +23,7 @@ class Custom_Gallery_Image_For_Post_Types_Settings{
 	 * @since   1.0.0
 	 */
 	private $plugin_name;
+	public $dbClass;
 
 	/**
 	 * Our Custom_Gallery_Image_For_Post_Types_Settings constructor 
@@ -33,6 +34,8 @@ class Custom_Gallery_Image_For_Post_Types_Settings{
 	function __construct(){
 
 		$this->plugin_name = CGPT_NAME;
+		$this->dbClass = new Custom_Gallery_Image_For_Post_Types_Db;
+		$this->add_settings_hooks();
 	}
 
 	/**
@@ -76,6 +79,38 @@ class Custom_Gallery_Image_For_Post_Types_Settings{
 
 		return $post_types;
 	}
+
+	/**
+	 * Registers all WordPress and plugin related hooks
+	 *
+	 * @access	private
+	 * @since	1.0.0
+	 * @return	void
+	 */
+	private function add_settings_hooks(){	
+		add_action( 'wp_ajax_save_post_types', array( &$this, 'save_post_types' ) );
+	}
+
+	public function save_post_types() {
+		    
+		// if ( empty( $_POST["post_type_value"] ) ) {    
+		// 	$this->dbClass->saveThePostTypeSeleted( $_POST["post_type_value"] );   
+		// } else {
+		// 	$data = array (
+		// 		'api_key' => $_POST["post_type_value"]
+		// 	);
+		// 	$where = array (
+		// 		'id' => $_POST["api_key_form_id"]
+		// 	);
+		// 	$this->dbClass->updateThePostTypeSeleted( $data, $where );   
+			
+		// }
+
+		$this->dbClass->saveThePostTypeSeleted( $_POST["post_type_value"] );   
+		
+	}
+
+
 
 
 }

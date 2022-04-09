@@ -1,75 +1,64 @@
 /*----------------- 
 Backend related CSS
 -----------------*/
-.gallery_area {
-    float:right;
-}
-.image_container {
-    float:left!important;
-    width: 100px;
-    background: url('https://i.hizliresim.com/dOJ6qL.png');
-    height: 100px;
-    background-repeat: no-repeat;
-    background-size: cover;
+#CGPT_gallery_wrapper .image_container {
     border-radius: 3px;
     cursor: pointer;
 }
-.image_container img{
-    height: 100px;
-    width: 100px;
+#CGPT_gallery_wrapper .image_container img {
+    height: 150px;
+    width: 150px;
     border-radius: 3px;
+    object-fit: cover;
 }
 
-#gallery_wrapper {
+#CGPT_gallery_wrapper {
     width: 100%;
     height: auto;
     position: relative;
     display: inline-block;
 }
-#gallery_wrapper input[type=text] {
+#CGPT_gallery_wrapper  input[type=text] {
     width:300px;
 }
-#gallery_wrapper .gallery_single_row {
-    float: left;
+#CGPT_gallery_wrapper .gallery_single_row {
     display:inline-block;
-    width: 100px;
     position: relative;
     margin-right: 8px;
     margin-bottom: 20px;
 }
-.dolu {
-    display: inline-block!important;
-}
-#gallery_wrapper label {
+#CGPT_gallery_wrapper #add_gallery_single_row { display: inline;}
+#CGPT_gallery_wrapper label {
     padding:0 6px;
 }
-.button.cgpt-remove {
+#CGPT_gallery_wrapper .gallery_single_row .button.cgpt-remove {
     background: rgba(0,0,0,0.4);
     color: #ffffff;
     position: absolute;
     border: none;
-    top: 4px;
-    right: 7px;
+    top: 0;
+    right: 0;
     font-size: 1.7em;
-    padding: 2px;
+    padding: 5px;
     box-shadow: none;
     line-height: 0;
+    border-radius: 3px 0 0 3px;
 }
-.button.cgpt-remove:hover {
+#CGPT_gallery_wrapper .gallery_single_row .button.cgpt-remove:hover {
     background: none;
     color: #fff;
 }
-.button.cgpt-add-image {
+#CGPT_gallery_wrapper .button.cgpt-add-image {
     background: #c3c2c2;
     color: #ffffff;
     border: none;
     box-shadow: none;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     line-height: 100px;
     font-size: 4em;
 }
-.button.cgpt-add-image:hover, .button.cgpt-add-image:focus {
+#CGPT_gallery_wrapper .button.cgpt-add-image:hover, .button.cgpt-add-image:focus {
     background: #e2e2e2;
     box-shadow: none;
     color: #0f88c1;
