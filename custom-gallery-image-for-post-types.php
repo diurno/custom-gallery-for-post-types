@@ -11,7 +11,7 @@
  * Plugin Name:   Custom Gallery Image For Post Types
  * Plugin URI:    https://federicocadierno.com
  * Description:   Gallery image for custom post types
- * Version:       1.0.0
+ * Version:       1.0.1
  * Author:        federico cadierno
  * Author URI:    https://federicocadierno.com
  * Text Domain:   custom-gallery-image-for-post-types
