@@ -186,6 +186,7 @@ class Custom_Gallery_Image_For_Post_Types_Run{
 	}
 
 	function print_admin_gallery($gallery_images) {
+		$images_count = ($gallery_images) ? count($gallery_images) : 0;
 		$gallery_html = '';
 		$gallery_html .= '<div id="CGPT_gallery_wrapper">
 						<div id="img_box_container" class="drag-sort-enable">';
@@ -207,7 +208,7 @@ class Custom_Gallery_Image_For_Post_Types_Run{
 							<input class="button cgpt-add-image" type="button" value="+"  title="Add image"/>
 						</div>';
 		$gallery_html .= '</div>';
-		$gallery_html .= '<input type="hidden" class="image_count" name="image_count" value="'.count($gallery_images).'" />';
+		$gallery_html .= '<input type="hidden" class="image_count" name="image_count" value="'.$images_count.'" />';
 		$gallery_html .= '</div>';
 
 		return $gallery_html;
@@ -285,6 +286,11 @@ class Custom_Gallery_Image_For_Post_Types_Run{
 		);
 		$params = shortcode_atts( $default_atts, $atts );
 		$postImages = get_post_meta($params['post_id'],'gallery_data');
+		// TODOS:
+			// validate if post hasnt any images display message 'no images found'
+			// switch attr template
+				// if slider do_action('print_slider')
+				// if masonry do_action('print_masonry')
 		
 		ob_start();
 		do_action( 'cgpt_print_slider_template', $postImages[0] );

@@ -34,7 +34,7 @@
   }
   
   function handleDrop(item) {
-    item.target.classList.remove('drag-sort-active');
+    item.target.parentNode.classList.remove('drag-sort-active');
   }
   
   //(()=> {enableDragSort('drag-sort-enable')})();

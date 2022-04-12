@@ -73,10 +73,23 @@ window.addEventListener('load', (event) => {
                     input_id.className = 'meta_image_id';
                     input_id.name = 'gallery[image_id][]';
 
+                    
                     image_container.insertBefore(input_url, null);
                     image_container.insertBefore(input_id, input_url);
                     
                     gallery_single_row.insertBefore(image_container, null);
+
+                    let btn_remove = document.createElement('span');
+                    btn_remove.classList.add('button', 'cgpt-remove'); //check how to add another class
+                    btn_remove.title = "Remove";
+
+                    let icon_trash = document.createElement('i');
+                    icon_trash.classList.add('fas', 'fa-trash-alt');
+                    
+                    btn_remove.insertBefore(icon_trash, null);
+
+                    gallery_single_row.insertBefore(btn_remove, null);
+                    
  
                     img_box_container.insertBefore(gallery_single_row, addImageBtn);
                     var element = document.querySelector("#img_box_container .gallery_single_row:nth-last-child(2) .image_container");
@@ -145,7 +158,7 @@ window.addEventListener('load', (event) => {
     /* events fired on the draggable target */
     document.addEventListener("dragstart", function( event ) {
         dragged = event.target;
-        event.target.style.opacity = .2;
+        event.target.style.opacity = .6;
         event.target.style.border = "3px dashed #000000";
     }, false);
 

@@ -43,10 +43,10 @@ Backend related CSS
     box-shadow: none;
     line-height: 0;
     border-radius: 3px 0 0 3px;
+    transition: color .3s ease-in-out;
 }
 #CGPT_gallery_wrapper .gallery_single_row .button.cgpt-remove:hover {
-    background: none;
-    color: #fff;
+    color: #dc0c0c;
 }
 #CGPT_gallery_wrapper .button.cgpt-add-image {
     background: #c3c2c2;
