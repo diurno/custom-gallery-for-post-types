@@ -6,23 +6,11 @@ if ( !class_exists( 'ProjectileCRM_Plugin' ) ) {
     {
         
         private static $instance;
-        public $table_required_fields;
-        public $table_selected_fields;
-        public $table_api_key;
+        public $table_settings;
         
         public function __construct() {
             global $wpdb;
-            //$this->table_required_fields = $wpdb->prefix.'projectile_crm_required_fields';
-            //$this->table_selected_fields = $wpdb->prefix.'projectile_crm_selected_fields';
             $this->table_settings = $wpdb->prefix.'cgpt_settings';
-        }
-        
-        public static function get_instance() {
-            if ( empty( self::$instance ) ) {
-            self::$instance = new self;
-            }
-
-            return self::$instance;
         }
         
         public function getThePostTypeSeleted() {
@@ -31,11 +19,14 @@ if ( !class_exists( 'ProjectileCRM_Plugin' ) ) {
             return $wpdb->get_results( $sql_query , OBJECT );
         }
         
-        public function saveThePostTypeSeleted( $postTypeValue ) {
+        public function saveThePostTypeSeleted( $postTypeArrValue ) {
             global $wpdb;
-            $wpdb->query('INSERT INTO `'.$this->table_settings.'` (`id`, `post_type`) 
+            $this->truncateTable();
+            foreach ($postTypeArrValue as $key => $value) {
+                $wpdb->query('INSERT INTO `'.$this->table_settings.'` (`id`, `post_type`) 
                         VALUES 
-                             (NULL, "'.$postTypeValue.'" );'); 
+                             (NULL, "'.$value.'" );'); 
+            }            
         }
         
         public function updateThePostTypeSeleted( $data, $where ) {
@@ -60,6 +51,13 @@ if ( !class_exists( 'ProjectileCRM_Plugin' ) ) {
             global $wpdb;
             
             $sql = 'DROP TABLE IF EXISTS `'.$this->table_settings.'`';
+            $wpdb->query($sql);
+        }
+
+        function truncateTable() {
+            global $wpdb;
+            
+            $sql = 'TRUNCATE TABLE `'.$this->table_settings.'`';
             $wpdb->query($sql);
         }
         
