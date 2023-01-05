@@ -118,7 +118,7 @@ class Custom_Gallery_Image_For_Post_Types_Run{
 
 	public function settings_panel( $admin_bar ) {
 
-		add_menu_page( 'Custom Gallery Settings', 'Settings', 'manage_options', 'CGPT-plugin', 
+		add_menu_page( 'Custom Gallery Settings', 'Custom Gallery Settings', 'manage_options', 'CGPT-plugin', 
                             array(&$this, 'cgpt_setting_render')); 
 
 	}
@@ -127,25 +127,28 @@ class Custom_Gallery_Image_For_Post_Types_Run{
 		$settingClass = new Custom_Gallery_Image_For_Post_Types_Settings;
 
 		$postTypesNames =  $settingClass->get_post_types();
-		$html_form = '<div class="wrapper-form">';
+		$html_form = '<div class="cgpt-wrapper-form">';
 		$html_form .= '<form id="post-types-form">';
 		$html_form .= '<div class="row">';
 		$html_form .= '<h1>Custom Gallery Post Types</h1>';
 		$html_form .= '<p>Select the Custom Post types you want to add the Custom Gallery.</p>';
 		$html_form .= '</div>';
 		$html_form .= '<div class="row">';
-		$html_form .= '<select class="forms post-type-dropdown" name="postType">';
-        $html_form .= '<option value="0">Select a Form</option>';            
-        foreach($postTypesNames as $item => $value) {
-            $html_form .= '<option value="'.$value.'">'.$item.'</option>';            
-        }
-        $html_form .= '</select>';
-		$html_form .= '</div>';
+		$postTypesSelected = $this->getPostTypesSelected();
+		foreach($postTypesNames as $item => $value) {
+			$checked = "";
+			if( in_array($value, $postTypesSelected)) {
+				$checked = "checked";
+			}
+            $html_form .= '<input type="checkbox" name="postType[]" id="'.$value.'" value="'.$value.'" '.$checked.' />';  
+            $html_form .= '<label class="cgpt-checkbox-label" for="'.$value.'">'.$item.'</label>';       
+        }        
+        $html_form .= '</div>';
 		$html_form .= '<div class="row">';
 		$html_form .= '<input type="button" class="button" id="post-type-submit" value="Save" />';
 		$html_form .= '</div>';
 		$html_form .= '</form>';
-		$html_form .= '<div class="overlay"></div>';
+		$html_form .= '<div class="msg"></div>';
 		$html_form .= '</div>';
 		echo $html_form;
 
