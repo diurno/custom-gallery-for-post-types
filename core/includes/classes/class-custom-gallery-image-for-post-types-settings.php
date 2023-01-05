@@ -91,23 +91,8 @@ class Custom_Gallery_Image_For_Post_Types_Settings{
 		add_action( 'wp_ajax_save_post_types', array( &$this, 'save_post_types' ) );
 	}
 
-	public function save_post_types() {
-		    
-		// if ( empty( $_POST["post_type_value"] ) ) {    
-		// 	$this->dbClass->saveThePostTypeSeleted( $_POST["post_type_value"] );   
-		// } else {
-		// 	$data = array (
-		// 		'api_key' => $_POST["post_type_value"]
-		// 	);
-		// 	$where = array (
-		// 		'id' => $_POST["api_key_form_id"]
-		// 	);
-		// 	$this->dbClass->updateThePostTypeSeleted( $data, $where );   
-			
-		// }
-
-		$this->dbClass->saveThePostTypeSeleted( $_POST["post_type_value"] );   
-		
+	public function save_post_types() {		    
+		$this->dbClass->saveThePostTypeSeleted( $_POST["post_type_value"] );   		
 	}
 
 
