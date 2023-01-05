@@ -64,3 +64,23 @@ Backend related CSS
     color: #0f88c1;
     border: none;
 }
+
+.cgpt-wrapper-form .row {
+    padding: 15px 0;
+}
+.cgpt-wrapper-form .row .cgpt-checkbox-label {
+    text-transform: capitalize;
+}
+
+.cgpt-wrapper-form .msg {
+    padding: 10px;
+    width: 20%
+}
+
+.cgpt-wrapper-form .msg.success {
+    border: 2px solid green;
+}
+.cgpt-wrapper-form .msg.error {
+    border: 2px solid red;
+}
+
