@@ -127,24 +127,43 @@ window.addEventListener('load', (event) => {
 
     (()=> {enableDragSort('drag-sort-enable')})();    
 
+    function serializeArray (array, name) {
+        var serialized = '';
+        for(var i = 0, j = array.length; i < j; i++) {
+            if(i>0) serialized += '&';
+            serialized += name + '=' + array[i];
+        }
+        return serialized;
+    }
+
     const saveData = (e) => {
 
         const request = new XMLHttpRequest();
         let postTypeValue = document.querySelector('.post-type-dropdown');
+        var msgContainer = document.querySelector('.msg');
+        var post_types_array = [];
+        var post_types_checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+
+        for (var i = 0; i < post_types_checkboxes.length; i++) {
+          post_types_array.push(post_types_checkboxes[i].value)
+        }
+        var data = serializeArray(post_types_array, 'post_type_value[]');
         
         request.open('POST',php_vars.ajax_url, true);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         request.onload = function () {
             if (this.status >= 200 && this.status < 400) {
-                
+                msgContainer.classList.add('success');
+                msgContainer.innerHTML = "Post Type Saved !";  
             } else {
-                // Response error
+                msgContainer.classList.add('error');
+                msgContainer.innerHTML = "There was an error saving the Post Type" ; 
             }
         };
         request.onerror = function() {
             // Connection error
-        };
-        request.send('action=save_post_types&post_type_value=' + postTypeValue.value);
+        }
+        request.send('action=save_post_types&' + data);
     }
 
     on(document, 'click', '#post-type-submit', e => {
